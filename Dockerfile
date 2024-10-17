@@ -21,3 +21,5 @@ EXPOSE 1337
 
 # Perintah untuk menjalankan aplikasi Strapi
 CMD ["npm", "start"]
+
+ENV NODE_ENV=production
