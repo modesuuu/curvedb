@@ -19,9 +19,8 @@
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "styled-components": "^6.0.0",
-    "undici": "^4.0.0" 
+    "undici": "^4.0.0"
   },
-  "devDependencies": {},
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
     "npm": ">=6.0.0"
@@ -29,5 +28,4 @@
   "strapi": {
     "uuid": "8ab9cb1e-9b64-43f1-a8c1-212ba037bac9"
   }
-
 }
