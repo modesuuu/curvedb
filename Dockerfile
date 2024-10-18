@@ -13,6 +13,9 @@
     # Salin semua file proyek ke dalam image
     COPY . .
 
+    #build strapi
+    RUN npm run build
+    
     # Ekspose port yang digunakan oleh Strapi
     EXPOSE 1337
 
