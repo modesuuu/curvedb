@@ -17,4 +17,4 @@ COPY . .
 EXPOSE 1337
 
 # Perintah untuk menjalankan aplikasi Strapi
-CMD ["npm", "run", "develop"]
+CMD ["npm", "run", "build"]
