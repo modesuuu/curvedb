@@ -15,11 +15,11 @@ COPY . .
 RUN chown -R node:node /opt/app
 USER node
 # Instal dependensi
-RUN npm ci
+RUN npm ci --legacy-peer-deps
 
 # Membersihkan cache sebelum build
 RUN npm cache clean --force
-
+RUN npm install @swc/core --save
 # Jalankan build
 RUN npm run build
 EXPOSE 1337
