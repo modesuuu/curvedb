@@ -20,6 +20,7 @@ WORKDIR /opt/app
 COPY --from=build /opt/app/build ./build
 
 COPY package.json package-lock.json ./
+RUN npm install
 
 EXPOSE 1337
 CMD ["npm", "start"]
