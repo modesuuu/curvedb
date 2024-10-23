@@ -19,5 +19,7 @@ WORKDIR /opt/app
 # Salin hasil build dari stage sebelumnya
 COPY --from=build /opt/app/build ./build
 
+COPY package.json package-lock.json ./
+
 EXPOSE 1337
 CMD ["npm", "start"]
