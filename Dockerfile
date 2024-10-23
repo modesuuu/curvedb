@@ -1,28 +1,23 @@
-# Creating multi-stage build for production
-FROM node:16-alpine as build
+# Menggunakan multi-stage build
+FROM node:18-alpine as build
+WORKDIR /opt/app
 
-# Install build dependencies
-RUN apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git
-
-WORKDIR /opt/
-COPY package.json package-lock.json ./
+# Salin package.json dan package-lock.json
+COPY package*.json ./
 RUN npm install
 
-WORKDIR /opt/app
+# Salin sisa file proyek
 COPY . .
+
+# Jalankan build
 RUN npm run build
 
-# Creating final production image
-FROM node:16-alpine
-RUN apk add --no-cache vips-dev
-
-WORKDIR /opt/
-COPY --from=build /opt/node_modules ./node_modules
+# Stage kedua
+FROM node:18-alpine
 WORKDIR /opt/app
-COPY --from=build /opt/app ./
 
-RUN chown -R node:node /opt/app
-USER node
+# Salin hasil build dari stage sebelumnya
+COPY --from=build /opt/app/build ./build
 
 EXPOSE 1337
-CMD ["npm", "run", "start"]
+CMD ["npm", "start"]
