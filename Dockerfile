@@ -1,26 +1,19 @@
-    # Menggunakan image Node.js
-    FROM node:18-alpine
+FROM node:18-alpine3.18
+# Installing libvips-dev for sharp Compatibility
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev nasm bash vips-dev git
+ARG NODE_ENV=development
+ENV NODE_ENV=${NODE_ENV}
 
-    # Set working directory
-    WORKDIR /app
+WORKDIR /opt/
+COPY package.json package-lock.json ./
+RUN npm install -g node-gyp
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install
+ENV PATH=/opt/node_modules/.bin:$PATH
 
-    # Salin file package.json dan package-lock.json
-    COPY package*.json ./
-
-    # Instal dependensi
-    RUN npm ci
-
-    # Salin semua file proyek ke dalam image
-    COPY . .
-
-    #build strapi
-    RUN npm run build
-    
-    # Ekspose port yang digunakan oleh Strapi
-    EXPOSE 1337
-
-    # Set environment variable untuk development
-    ENV NODE_ENV=development
-
-    # Perintah untuk menjalankan aplikasi Strapi dalam mode development
-    CMD ["npm", "run", "develop"]
+WORKDIR /opt/app
+COPY . .
+RUN chown -R node:node /opt/app
+USER node
+RUN ["npm", "run", "build"]
+EXPOSE 1337
+CMD ["npm", "run", "develop"]
