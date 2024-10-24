@@ -11,9 +11,9 @@ module.exports = ({ env }) => {
         port: env.int('DATABASE_PORT', 5432),
         database: env('DATABASE_NAME', 'Curvedb'),
         user: env('DATABASE_USERNAME', 'Curvedb_owner'),
-        password: env('DATABASE_PASSWORD',),
+        password: env('DATABASE_PASSWORD'),
         ssl:{
-          rejectUnauthorized: true,
+          rejectUnauthorized: false,
         },
         schema: env('DATABASE_SCHEMA', 'public'),
       },
