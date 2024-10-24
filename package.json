@@ -15,12 +15,14 @@
     "@strapi/plugin-users-permissions": "5.1.0",
     "@strapi/strapi": "5.1.0",
     "better-sqlite3": "^11.3.0",
+    "esbuild": "^0.24.0",
     "pg": "8.8.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-router-dom": "^6.0.0",
     "styled-components": "^6.0.0",
-    "undici": "^4.0.0"
+    "undici": "^4.0.0",
+    "vite": "^5.4.10"
   },
   "engines": {
     "node": ">=18.0.0 <=22.x.x",
