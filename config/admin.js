@@ -3,7 +3,7 @@ module.exports = ({ env }) => ({
     secret: env('ADMIN_JWT_SECRET'),
   },
   apiToken: {
-    salt: env('API_TOKEN_SALT','u2lVG//wA1GjmQhEE0rO4w=='),
+    salt: env('API_TOKEN_SALT'),
   },
   transfer: {
     token: {
@@ -13,5 +13,14 @@ module.exports = ({ env }) => ({
   flags: {
     nps: env.bool('FLAG_NPS', true),
     promoteEE: env.bool('FLAG_PROMOTE_EE', true),
+  },
+  settings: {
+    contentSecurityPolicy: {
+      directives: {
+        "default-src": ["'self'"],
+        "script-src": ["'self'", "'unsafe-inline'"],
+        "connect-src": ["'self'", "wss:", "https:"],
+      },
+    },
   },
 });
