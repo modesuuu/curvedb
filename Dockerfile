@@ -15,6 +15,7 @@ ENV PATH /opt/node_modules/.bin:$PATH
 WORKDIR /opt/app
 COPY . .
 RUN chown -R node:node /opt/app
+RUN npm run build
 USER node
 EXPOSE 1337
 CMD ["npm", "run", "start"]
